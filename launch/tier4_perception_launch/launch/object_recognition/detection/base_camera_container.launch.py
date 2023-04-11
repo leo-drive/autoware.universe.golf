@@ -22,7 +22,6 @@ from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
 from launch.actions import OpaqueFunction
-from launch import LaunchContext
 import yaml
 
 def launch_setup(context, *args, **kwargs):
@@ -121,8 +120,6 @@ def launch_setup(context, *args, **kwargs):
 
 def generate_launch_description():
     launch_arguments = []
-    context = LaunchContext()
-
     def add_launch_arg(name: str, default_value=None, description=None):
     # a default_value of None is equivalent to not passing that kwarg at all
         launch_arguments.append(
@@ -137,8 +134,6 @@ def generate_launch_description():
     add_launch_arg("camera_param_file","", description="camera parameter file path")
     add_launch_arg("use_intra_process", "", "use intra process")
     add_launch_arg("use_multithread", "", "use multithread")
-
-
 
 
 
