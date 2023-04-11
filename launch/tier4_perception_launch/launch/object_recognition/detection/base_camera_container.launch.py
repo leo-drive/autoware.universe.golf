@@ -29,6 +29,8 @@ def launch_setup(context, *args, **kwargs):
     output_topic= LaunchConfiguration("output_topic").perform(context)
 
     input_image = LaunchConfiguration("input_image").perform(context)
+    input_camera_info= LaunchConfiguration("input_camera_info").perform(context)
+
     # tensorrt params
     gpu_id = int(LaunchConfiguration("gpu_id").perform(context))
     mode= LaunchConfiguration("mode").perform(context)
@@ -79,6 +81,21 @@ def launch_setup(context, *args, **kwargs):
                 ],
             ),
             ComposableNode(
+                package='image_proc',
+                plugin='image_proc::RectifyNode',
+                name='rectify_camera_image_node',
+                # Remap subscribers and publishers
+                remappings=[
+                    ('image', input_image),
+                    ('camera_info', input_camera_info),
+                    ('image_rect', 'image_rect')
+                ],
+                extra_arguments=[
+                    {"use_intra_process_comms": LaunchConfiguration("use_intra_process")}
+                ],
+            ),
+
+            ComposableNode(
                 package="tensorrt_yolo",
                 plugin="object_recognition::TensorrtYoloNodelet",
                 name="front_camera_tensorrt_yolo",
@@ -102,7 +119,7 @@ def launch_setup(context, *args, **kwargs):
                 }
                 ],
                 remappings=[
-                    ("in/image", input_image),
+                    ("in/image", 'image_rect'),
                     ("out/objects", output_topic),
                     ("out/image", output_topic + "/debug/image"),
                 ],
@@ -118,6 +135,7 @@ def launch_setup(context, *args, **kwargs):
 
 def generate_launch_description():
     launch_arguments = []
+
     def add_launch_arg(name: str, default_value=None, description=None):
     # a default_value of None is equivalent to not passing that kwarg at all
         launch_arguments.append(
@@ -125,6 +143,7 @@ def generate_launch_description():
     )
     add_launch_arg("mode","")
     add_launch_arg("input_image","", description="input camera topic")
+    add_launch_arg("input_camera_info", "", description="input camera info topic")
     add_launch_arg("yolo_type","", description="yolo model type")
     add_launch_arg("label_file","" ,description="tensorrt node label file")
     add_launch_arg("gpu_id","", description="gpu setting")
