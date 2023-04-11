@@ -29,8 +29,6 @@ def launch_setup(context, *args, **kwargs):
     output_topic= LaunchConfiguration("output_topic").perform(context)
 
     input_image = LaunchConfiguration("input_image").perform(context)
-    input_camera_info= LaunchConfiguration("input_camera_info").perform(context)
-
     # tensorrt params
     gpu_id = int(LaunchConfiguration("gpu_id").perform(context))
     mode= LaunchConfiguration("mode").perform(context)
@@ -127,7 +125,6 @@ def generate_launch_description():
     )
     add_launch_arg("mode","")
     add_launch_arg("input_image","", description="input camera topic")
-    add_launch_arg("input_camera_info", "", description="input camera info topic")
     add_launch_arg("yolo_type","", description="yolo model type")
     add_launch_arg("label_file","" ,description="tensorrt node label file")
     add_launch_arg("gpu_id","", description="gpu setting")
