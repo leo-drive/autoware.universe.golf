@@ -9,7 +9,7 @@
   <arg name="output_topic_gnss_fixed" default="gnss_fixed"/>
 
   <arg name="base_frame" default="base_link"/>
-  <arg name="gnss_base_frame" default="GNSS_INS/gnss_ins_link"/>
+  <arg name="gnss_base_frame" default="gnss_ins_base_link"/>
   <arg name="gnss_frame" default="GNSS_INS/gnss_ins_link"/>
   <arg name="map_frame" default="map"/>
 
