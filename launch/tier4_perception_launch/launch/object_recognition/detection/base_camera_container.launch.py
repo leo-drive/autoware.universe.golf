@@ -18,25 +18,21 @@ from launch.actions import SetLaunchConfiguration
 from launch.conditions import IfCondition
 from launch.conditions import UnlessCondition
 from launch.substitutions.launch_configuration import LaunchConfiguration
-
 from launch_ros.actions import ComposableNodeContainer
-from launch_ros.actions import LoadComposableNodes
 from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
-from launch.substitutions import PathJoinSubstitution
 from launch.actions import OpaqueFunction
-
 from launch import LaunchContext
 import yaml
 
 def launch_setup(context, *args, **kwargs):
-    use_intra_process = "True"
-    output_topic= "rois0"
+
+    output_topic= LaunchConfiguration("output_topic").perform(context)
 
     input_image = LaunchConfiguration("input_image").perform(context)
     input_camera_info= LaunchConfiguration("input_camera_info").perform(context)
 
-
+    # tensorrt params
     gpu_id = int(LaunchConfiguration("gpu_id").perform(context))
     mode= LaunchConfiguration("mode").perform(context)
     calib_image_directory= FindPackageShare("tensorrt_yolo").perform(context) + "/calib_image/"
@@ -82,21 +78,7 @@ def launch_setup(context, *args, **kwargs):
                 remappings=[
                 ],
                 extra_arguments=[
-                    {"use_intra_process_comms": bool(use_intra_process)}
-                ],
-            ),
-            ComposableNode(
-                package='image_rectifier',
-                plugin='image_preprocessor::ImageRectifier',
-                name='rectify_front_camera_image_node',
-                # Remap subscribers and publishers
-                remappings=[
-                    ('image', input_image),
-                    ('camera_info', input_camera_info),
-                    ('image_rect', 'image_rect_front')
-                ],
-                extra_arguments=[
-                    {"use_intra_process_comms": bool(use_intra_process)}
+                    {"use_intra_process_comms": LaunchConfiguration("use_intra_process")}
                 ],
             ),
             ComposableNode(
@@ -123,12 +105,12 @@ def launch_setup(context, *args, **kwargs):
                 }
                 ],
                 remappings=[
-                    ("in/image", 'image_rect_front'),
+                    ("in/image", input_image),
                     ("out/objects", output_topic),
                     ("out/image", output_topic + "/debug/image"),
                 ],
                 extra_arguments=[
-                    {"use_intra_process_comms": bool(use_intra_process)}
+                    {"use_intra_process_comms": LaunchConfiguration("use_intra_process")}
                 ],
             ),
         ],
@@ -153,7 +135,9 @@ def generate_launch_description():
     add_launch_arg("label_file","" ,description="tensorrt node label file")
     add_launch_arg("gpu_id","", description="gpu setting")
     add_launch_arg("camera_param_file","", description="camera parameter file path")
-    add_launch_arg("use_multithread", "True", "use multithread")
+    add_launch_arg("use_intra_process", "", "use intra process")
+    add_launch_arg("use_multithread", "", "use multithread")
+
 
 
 
