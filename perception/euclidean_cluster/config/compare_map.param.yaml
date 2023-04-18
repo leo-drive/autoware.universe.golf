@@ -1,8 +1,6 @@
 /**:
   ros__parameters:
-
-    # distance threshold for compare compare
-    distance_threshold: 0.5
+    distance_threshold: 0.35
 
     # publish voxelized map pointcloud for debug
     publish_debug_pcd: False
