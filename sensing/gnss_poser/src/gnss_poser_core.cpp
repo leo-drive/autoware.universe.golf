@@ -105,7 +105,8 @@ void GNSSPoser::callbackNavSatFix(
 
   // generate gnss_antenna_pose
   geometry_msgs::msg::Pose gnss_antenna_pose{};
-  gnss_antenna_pose.position = median_position;
+//  gnss_antenna_pose.position = median_position;
+  gnss_antenna_pose.position = position;
   gnss_antenna_pose.orientation = orientation;
 
   // get TF from gnss_antenna to map
