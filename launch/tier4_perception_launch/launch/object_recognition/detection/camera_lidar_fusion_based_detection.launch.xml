@@ -44,8 +44,12 @@
   </include> -->
 
 <!--  GOLF Camera Containers -->
+  <group>
+    <include file="$(find-pkg-share tier4_perception_launch)/launch/object_recognition/detection/all_camera.launch.xml">
+      <arg name="image_number" value="$(var image_number)"/>
+    </include>
+  </group>
 
-  <include file="$(find-pkg-share tier4_perception_launch)/launch/object_recognition/detection/all_camera.launch.xml"/>
 
 
   <!-- Pointcloud map filter -->

@@ -3,21 +3,29 @@
 <!--    common parameters -->
     <arg name="image_0" default="front_right_camera" description="image raw topic name"/>
     <arg name="camera_info0" default="/lucid_vision/front_right_camera/camera_info" description="camera info topic name"/>
+    <arg name="gpu_id_image_0" default="2"/>
     <arg name="image_1" default="front_camera"/>
     <arg name="camera_info1" default="/lucid_vision/front_camera/camera_info"/>
+    <arg name="gpu_id_image_1" default="2"/>
     <arg name="image_2" default="front_left_camera"/>
     <arg name="camera_info2" default="/lucid_vision/front_left_camera/camera_info"/>
+    <arg name="gpu_id_image_2" default="2"/>
     <arg name="image_3" default="middle_left_camera"/>
     <arg name="camera_info3" default="/lucid_vision/middle_left_camera/camera_info"/>
+    <arg name="gpu_id_image_3" default="2"/>
     <arg name="image_4" default="middle_right_camera"/>
     <arg name="camera_info4" default="/lucid_vision/middle_right_camera/camera_info"/>
+    <arg name="gpu_id_image_4" default="3"/>
     <arg name="image_5" default="rear_left_camera"/>
     <arg name="camera_info5" default="/lucid_vision/rear_left_camera/camera_info"/>
+    <arg name="gpu_id_image_5" default="3"/>
     <arg name="image_6" default="rear_right_camera"/>
     <arg name="camera_info6" default="/lucid_vision/rear_right_camera/camera_info"/>
+    <arg name="gpu_id_image_6" default="3"/>
     <arg name="image_7" default="rear_camera"/>
     <arg name="camera_info7" default="/lucid_vision/rear_camera/camera_info"/>
-    <arg name="image_number" default="1" description="choose image raw number(0-7)"/>
+    <arg name="gpu_id_image_7" default="3"/>
+    <arg name="image_number" default="8" description="choose image raw number(0-7)"/>
 
 <!--    tensorrt params -->
     <arg name="mode" default="FP32"/>
@@ -35,7 +43,7 @@
         <arg name="input_camera_info" value="$(var camera_info0)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_0)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="front_right_camera/rois0"/>
@@ -48,7 +56,7 @@
         <arg name="input_camera_info" value="$(var camera_info1)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_1)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="front_camera/rois1"/>
@@ -61,7 +69,7 @@
         <arg name="input_camera_info" value="$(var camera_info2)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_2)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="front_left_camera/rois2"/>
@@ -74,7 +82,7 @@
         <arg name="input_camera_info" value="$(var camera_info3)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_3)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="middle_left_camera/rois3"/>
@@ -88,7 +96,7 @@
         <arg name="input_camera_info" value="$(var camera_info4)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_4)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="middle_right_camera/rois4"/>
@@ -102,7 +110,7 @@
         <arg name="input_camera_info" value="$(var camera_info5)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_5)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="rear_left_camera/rois5"/>
@@ -116,7 +124,7 @@
         <arg name="input_camera_info" value="$(var camera_info6)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_6)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="rear_right_camera/rois6"/>
@@ -130,7 +138,7 @@
         <arg name="input_camera_info" value="$(var camera_info7)"/>
         <arg name="yolo_type" value="$(var yolo_type)"/>
         <arg name="label_file" value="$(var label_file)"/>
-        <arg name="gpu_id" value="$(var gpu_id)"/>
+        <arg name="gpu_id" value="$(var gpu_id_image_7)"/>
         <arg name="use_intra_process" value="$(var use_intra_process)"/>
         <arg name="use_multithread" value="$(var use_multithread)"/>
         <arg name="output_topic" value="rear_camera/rois7"/>
