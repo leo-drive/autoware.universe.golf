@@ -21,23 +21,23 @@
   <arg name="input/pointcloud" default="/sensing/lidar/concatenated/pointcloud" description="The topic will be used in the detection module"/>
   <arg name="mode" default="camera_lidar_fusion" description="options: `camera_lidar_radar_fusion`, `camera_lidar_fusion`, `lidar_radar_fusion`, `lidar` or `radar`"/>
   <arg name="lidar_detection_model" default="centerpoint" description="options: `centerpoint`, `apollo`, `pointpainting`, `clustering`"/>
-  <arg name="image_raw0" default="/sensing/camera/camera0/image_rect_color" description="image raw topic name"/>
-  <arg name="camera_info0" default="/sensing/camera/camera0/camera_info" description="camera info topic name"/>
-  <arg name="image_raw1" default="/sensing/camera/camera1/image_rect_color"/>
-  <arg name="camera_info1" default="/sensing/camera/camera1/camera_info"/>
-  <arg name="image_raw2" default="/sensing/camera/camera2/image_rect_color"/>
-  <arg name="camera_info2" default="/sensing/camera/camera2/camera_info"/>
-  <arg name="image_raw3" default="/sensing/camera/camera3/image_rect_color"/>
-  <arg name="camera_info3" default="/sensing/camera/camera3/camera_info"/>
-  <arg name="image_raw4" default="/sensing/camera/camera4/image_rect_color"/>
-  <arg name="camera_info4" default="/sensing/camera/camera4/camera_info"/>
-  <arg name="image_raw5" default="/sensing/camera/camera5/image_rect_color"/>
-  <arg name="camera_info5" default="/sensing/camera/camera5/camera_info"/>
-  <arg name="image_raw6" default="/sensing/camera/camera6/image_rect_color"/>
-  <arg name="camera_info6" default="/sensing/camera/camera6/camera_info"/>
-  <arg name="image_raw7" default="/sensing/camera/camera7/image_rect_color"/>
-  <arg name="camera_info7" default="/sensing/camera/camera7/camera_info"/>
-  <arg name="image_number" default="6" description="choose image raw number(1-8)"/>
+  <arg name="image_raw0" default="/lucid_vision/front_right_camera/image_rect" description="image raw topic name"/>
+  <arg name="camera_info0" default="/lucid_vision/front_right_camera/camera_info" description="camera info topic name"/>
+  <arg name="image_raw1" default="/lucid_vision/front_camera/image_rect"/>
+  <arg name="camera_info1" default="/lucid_vision/front_camera/camera_info"/>
+  <arg name="image_raw2" default="/lucid_vision/front_left_camera/image_rect"/>
+  <arg name="camera_info2" default="/lucid_vision/front_left_camera/camera_info"/>
+  <arg name="image_raw3" default="/lucid_vision/middle_left_camera/image_rect"/>
+  <arg name="camera_info3" default="/lucid_vision/middle_left_camera/camera_info"/>
+  <arg name="image_raw4" default="/lucid_vision/middle_right_camera/image_rect"/>
+  <arg name="camera_info4" default="/lucid_vision/middle_right_camera/camera_info"/>
+  <arg name="image_raw5" default="/lucid_vision/rear_left_camera/image_rect"/>
+  <arg name="camera_info5" default="/lucid_vision/rear_left_camera/camera_info"/>
+  <arg name="image_raw6" default="/lucid_vision/rear_right_camera/image_rect"/>
+  <arg name="camera_info6" default="/lucid_vision/rear_right_camera/camera_info"/>
+  <arg name="image_raw7" default="/lucid_vision/rear_camera/image_rect"/>
+  <arg name="camera_info7" default="/lucid_vision/rear_camera/camera_info"/>
+  <arg name="image_number" default="8" description="choose image raw number(0-7)"/>
   <arg name="object_recognition_detection_fusion_sync_param_path" description="you need change the size of 'input_offset_ms' in the file in this path when you want to change image_number"/>
   <arg name="use_vector_map" default="true" description="use vector map in prediction"/>
   <arg name="use_pointcloud_map" default="false" description="use pointcloud map in detection"/>
