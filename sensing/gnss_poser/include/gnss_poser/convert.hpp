@@ -127,7 +127,6 @@ GNSSStat NavSatFix2LocalCartesianUTM(
     utm_local.x = global_x - utm_origin.x;
     utm_local.y = global_y - utm_origin.y;
     utm_local.z = EllipsoidHeight2OrthometricHeight(nav_sat_fix_msg, logger) - utm_origin.z;
-//    utm_local.z = nav_sat_fix_msg.altitude - utm_origin.z;
   } catch (const GeographicLib::GeographicErr & err) {
     RCLCPP_ERROR_STREAM(
       logger, "Failed to convert from LLH to UTM in local coordinates" << err.what());
