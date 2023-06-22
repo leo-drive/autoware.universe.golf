@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
-    use_steer_ff: true
-    use_steer_fb: true
+    use_steer_ff: false
+    use_steer_fb: false
     is_debugging: false
     steer_pid:
       kp: 150.0
