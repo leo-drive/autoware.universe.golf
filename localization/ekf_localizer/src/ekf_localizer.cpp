@@ -103,10 +103,9 @@ EKFLocalizer::EKFLocalizer(const std::string & node_name, const rclcpp::NodeOpti
     std::shared_ptr<rclcpp::Node>(this, [](auto) {}));
 
   initEKF();
-
-  z_filter_.set_proc_dev(1.0);
-  roll_filter_.set_proc_dev(0.01);
-  pitch_filter_.set_proc_dev(0.01);
+  z_filter_.set_proc_dev(params_.z_filter_proc_dev);
+  roll_filter_.set_proc_dev(params_.roll_filter_proc_dev);
+  pitch_filter_.set_proc_dev(params_.pitch_filter_proc_dev);
 
   /* debug */
   pub_debug_ = create_publisher<tier4_debug_msgs::msg::Float64MultiArrayStamped>("debug", 1);

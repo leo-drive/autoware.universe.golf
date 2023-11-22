@@ -21,3 +21,7 @@
     proc_stddev_yaw_c: 0.005
     proc_stddev_vx_c: 10.0
     proc_stddev_wz_c: 5.0
+
+    z_filter_proc_dev: 1.0
+    roll_filter_proc_dev: 0.01
+    pitch_filter_proc_dev: 0.01
