@@ -103,6 +103,10 @@ EKFLocalizer::EKFLocalizer(const std::string & node_name, const rclcpp::NodeOpti
     std::shared_ptr<rclcpp::Node>(this, [](auto) {}));
 
   initEKF();
+
+  std::cout<<"********************* Z ******" << params_.z_filter_proc_dev<<std::endl;
+  std::cout<<"********************* ROLL ******" << params_.roll_filter_proc_dev<<std::endl;
+  std::cout<<"********************* PITCH ******" <<params_.pitch_filter_proc_dev<<std::endl;
   z_filter_.set_proc_dev(params_.z_filter_proc_dev);
   roll_filter_.set_proc_dev(params_.roll_filter_proc_dev);
   pitch_filter_.set_proc_dev(params_.pitch_filter_proc_dev);
@@ -258,7 +262,7 @@ void EKFLocalizer::timerTFCallback()
   }
 
   geometry_msgs::msg::TransformStamped transform_stamped;
-  transform_stamped = tier4_autoware_utils::pose2transform(current_ekf_pose_, "base_link");
+  transform_stamped = tier4_autoware_utils::pose2transform(current_ndt_pose_, "base_link");
   transform_stamped.header.stamp = this->now();
   tf_br_->sendTransform(transform_stamped);
 }
@@ -343,6 +347,8 @@ void EKFLocalizer::callbackPoseWithCovariance(
     return;
   }
 
+  current_ndt_pose_.pose = msg->pose.pose;
+  current_ndt_pose_.header = msg->header;
   pose_queue_.push(msg);
 }
 
