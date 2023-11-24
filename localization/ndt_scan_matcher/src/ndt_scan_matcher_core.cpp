@@ -272,6 +272,7 @@ void NDTScanMatcher::timer_diagnostic()
       diag_status_msg.level = diagnostic_msgs::msg::DiagnosticStatus::WARN;
       diag_status_msg.message += "Initializing State. ";
     }
+    std::cout<<"LIDAR TOPIC DELAY SEC :  "<<std::stod((*state_ptr_)["lidar_topic_delay_time_sec"])<<std::endl;
     if (
       state_ptr_->count("lidar_topic_delay_time_sec") &&
       std::stod((*state_ptr_)["lidar_topic_delay_time_sec"]) > lidar_topic_timeout_sec_) {
