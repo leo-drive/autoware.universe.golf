@@ -262,7 +262,7 @@ void EKFLocalizer::timerTFCallback()
   }
 
   geometry_msgs::msg::TransformStamped transform_stamped;
-  transform_stamped = tier4_autoware_utils::pose2transform(current_ndt_pose_, "base_link");
+  transform_stamped = tier4_autoware_utils::pose2transform(current_ekf_pose_, "base_link");
   transform_stamped.header.stamp = this->now();
   tf_br_->sendTransform(transform_stamped);
 }
