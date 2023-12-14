@@ -182,11 +182,21 @@ bool DistortionCorrectorComponent::undistortPointCloud(
     [this](const sensor_msgs::msg::PointField & field) {
       return field.name == time_stamp_field_name_;
     });
-  if (time_stamp_field_it == points.fields.cend()) {
-    RCLCPP_WARN_STREAM_THROTTLE(
-      get_logger(), *get_clock(), 10000 /* ms */,
-      "Required field time stamp doesn't exist in the point cloud.");
-    return false;
+
+  auto time_stamp_field_it_hesai = std::find_if(
+          std::cbegin(points.fields), std::cend(points.fields),
+          [this](const sensor_msgs::msg::PointField & field) {
+              return field.name == "timestamp";
+          });
+  if (time_stamp_field_it == points.fields.cend() ) {
+      if(time_stamp_field_it_hesai == points.fields.cend()) {
+          RCLCPP_WARN_STREAM_THROTTLE(
+                  get_logger(), *get_clock(), 10000 /* ms */,
+                  "Required field time stamp doesn't exist in the point cloud.");
+          return false;
+      }
+      time_stamp_field_name_ = time_stamp_field_it_hesai->name;
+    return true;
   }
 
   sensor_msgs::PointCloud2Iterator<float> it_x(points, "x");
