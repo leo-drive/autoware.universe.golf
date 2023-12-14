@@ -91,12 +91,20 @@ EKFLocalizer::EKFLocalizer(const std::string & node_name, const rclcpp::NodeOpti
   tf_br_ = std::make_shared<tf2_ros::TransformBroadcaster>(
     std::shared_ptr<rclcpp::Node>(this, [](auto) {}));
 
+  z_filter_.set_proc_dev(params_.z_filter_proc_dev);
+  roll_filter_.set_proc_dev(params_.roll_filter_proc_dev);
+  pitch_filter_.set_proc_dev(params_.pitch_filter_proc_dev);
   ekf_module_ = std::make_unique<EKFModule>(warning_, params_);
   logger_configure_ = std::make_unique<tier4_autoware_utils::LoggerLevelConfigure>(this);
 
   z_filter_.set_proc_dev(1.0);
   roll_filter_.set_proc_dev(0.01);
   pitch_filter_.set_proc_dev(0.01);
+
+  /* debug */
+  pub_debug_ = create_publisher<tier4_debug_msgs::msg::Float64MultiArrayStamped>("debug", 1);
+  pub_measured_pose_ = create_publisher<geometry_msgs::msg::PoseStamped>("debug/measured_pose", 1);
+
 }
 
 /*
