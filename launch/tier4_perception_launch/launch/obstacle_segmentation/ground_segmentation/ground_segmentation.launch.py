@@ -41,9 +41,9 @@ class GroundSegmentationPipeline:
             self.ground_segmentation_param = yaml.safe_load(f)["/**"]["ros__parameters"]
 
         self.single_frame_obstacle_seg_output = (
-            "/perception/obstacle_segmentation/single_frame/pointcloud"
+            "single_frame/pointcloud_raw"
         )
-        self.output_topic = "/perception/obstacle_segmentation/pointcloud"
+        self.output_topic = "obstacle_segmentation/pointcloud"
         self.use_single_frame_filter = self.ground_segmentation_param["use_single_frame_filter"]
         self.use_time_series_filter = self.ground_segmentation_param["use_time_series_filter"]
 
@@ -338,7 +338,7 @@ class GroundSegmentationPipeline:
                 plugin="autoware::occupancy_grid_map_outlier_filter::OccupancyGridMapOutlierFilterComponent",
                 name="occupancy_grid_based_outlier_filter",
                 remappings=[
-                    ("~/input/occupancy_grid_map", "/perception/occupancy_grid_map/map"),
+                    ("~/input/occupancy_grid_map", "occupancy_grid_map/map"),
                     ("~/input/pointcloud", input_topic),
                     ("~/output/pointcloud", output_topic),
                 ],
