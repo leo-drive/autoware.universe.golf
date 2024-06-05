@@ -187,7 +187,7 @@
       <remap from="~/input/route" to="$(var input_route_topic_name)"/>
       <remap from="~/input/vector_map" to="$(var input_vector_map_topic_name)"/>
       <remap from="~/input/perception" to="/perception/object_recognition/objects"/>
-      <remap from="~/input/occupancy_grid_map" to="/perception/occupancy_grid_map/map"/>
+      <remap from="~/input/occupancy_grid_map" to="/sensing/lidar/top/obstacle_segmentation/occupancy_grid_map/map"/>
       <remap from="~/input/costmap" to="/planning/scenario_planning/parking/costmap_generator/occupancy_grid"/>
       <remap from="~/input/traffic_signals" to="$(var input_traffic_light_topic_name)"/>
       <remap from="~/input/odometry" to="/localization/kinematic_state"/>
@@ -233,7 +233,7 @@
       <remap from="~/input/external_velocity_limit_mps" to="/planning/scenario_planning/max_velocity_default"/>
       <remap from="~/input/traffic_signals" to="$(var input_traffic_light_topic_name)"/>
       <remap from="~/input/virtual_traffic_light_states" to="$(var input_virtual_traffic_light_topic_name)"/>
-      <remap from="~/input/occupancy_grid" to="/perception/occupancy_grid_map/map"/>
+      <remap from="~/input/occupancy_grid" to="/sensing/lidar/top/obstacle_segmentation/occupancy_grid_map/map"/>
       <remap from="~/output/path" to="path"/>
       <remap from="~/output/stop_reasons" to="/planning/scenario_planning/status/stop_reasons"/>
       <remap from="~/output/infrastructure_commands" to="/planning/scenario_planning/status/infrastructure_commands"/>
